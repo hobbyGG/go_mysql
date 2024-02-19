@@ -7,7 +7,7 @@ drop database dbname;
 
 表操作
 show tables;
-create table  tbname(字段 类型)
+create table tbname(字段 类型)
 desc tbname;
 show create table;//建表信息
 alter table tbname add/modify/change/drop/rename to...
