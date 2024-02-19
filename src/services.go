@@ -16,7 +16,7 @@ func getOne(id int) (app, error) { //查
 
 func getMany(id int) (apps []app, err error) { //查
 	rows, err := db.Query("select id, name, age from user where id>=?", id)
-	defer rows.Close() //rows要close，而row不用，因为row在scan后就关闭，而rows在scan后不会关闭
+	defer fmt.Println(rows.Close()) //rows要close，而row不用，因为row在scan后就关闭，而rows在scan后不会关闭，不打印会犯close不检查的错误
 	if err != nil {
 		log.Fatalln(err.Error())
 	}
@@ -59,11 +59,11 @@ func updateRow() {
 }
 
 func deleteRow() {
-	res ,err := db.Exec("delete from user where name='ho'")
+	res, err := db.Exec("delete from user where name='ho'")
 	if err != nil {
 		log.Fatalf("get RowsAffected failed, err:%v\n", err)
 	}
-	
+
 	n, err := res.RowsAffected()
 	if err != nil {
 		log.Fatalf("get RowsAffected failed, err:%v\n", err)
